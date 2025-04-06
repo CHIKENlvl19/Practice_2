@@ -1,10 +1,10 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <cstdlib> // библиотека для рандомайзера srand
 #include <ctime>
 #include <sstream> 
-#include <locale.h>
-#include <windows.h>
+//#include <locale.h>
+//#include <windows.h>
 using namespace std;
 
 // поиск НОД по алгоритму Евклида для проверки на взаимную простоту
