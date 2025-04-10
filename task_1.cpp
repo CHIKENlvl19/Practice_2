@@ -16,11 +16,11 @@ int aXmodP (int a, int x, int p){
     return result;
 }
 
-int gcd(int a, int b){
+int gcd(int a, int b){ // алгоритм Евклида для эффективного нахождения НОД
     while( b!= 0){
-        int temp = b;
+        int r = b;
         b = a % b;
-        a = temp;
+        a = r;
     }
 
     return a;
