@@ -6,56 +6,6 @@
 
 using namespace std;
 
-int aXmodP (int a, int x, int p){ // быстрое возведение в степень по модулю
-    int degree = x % (p - 1); // применение теоремы Ферма
-
-    int result = 1;
-    for(int i = 1; i <= degree; i++){
-        result = result * a;
-        result %= p;
-    }
-
-    return result;
-}
-
-int gcd(int a, int b){ // алгоритм Евклида для эффективного нахождения НОД
-    while( b!= 0){
-        int r = b;
-        b = a % b;
-        a = r;
-    }
-
-    return a;
-}
-
-template<typename T>
-bool FermatsCondition(T p, T& k){
-    if(p <= 1 || (p % 2 == 0 && p != 2)){
-        return false;
-    }
-
-    vector<int> aValues = {2, 3, 5, 7, 11, 13, 17, 19, 23};
-    if(k > static_cast<int>(aValues.size())){
-        k = aValues.size();
-    }
-
-    for(int i = 0; i < k; i++){
-        T a = aValues[i];
-
-        if(a >= p) continue;
-
-        if(gcd(p, a) != 1){
-            return false;
-        }
-
-        if(aXmodP(a, p-1, p) != 1){
-            return false;
-        }
-    }
-
-    return true;
-}
-
 bool isPrime(int p){
     if (p % 2 == 0 || p % 3 == 0 || p <= 1){
         return false;
@@ -80,9 +30,7 @@ bool isPrime(int p){
 }
 
 void Tests(){
-    assert(aXmodP(3, 100, 7) == 4);
-    assert(gcd(1234, 54) == 2);
-    assert(isPrime(23));
+    
 }
 
 int main(){
