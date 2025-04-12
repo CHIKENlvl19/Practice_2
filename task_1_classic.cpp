@@ -1,11 +1,12 @@
 #include <iostream>
 #include <math.h>
 #include <vector>
+#include <assert.h>
 
 using namespace std;
 
-int aXmodP (int a, int x, int p){
-    int degree = x % (p - 1);
+int aXmodP (int a, int x, int p){ // быстрое возведение в степень по модулю
+    int degree = x % (p - 1); // применение теоремы Ферма
 
     int result = 1;
     for(int i = 1; i <= degree; i++){
@@ -26,7 +27,8 @@ int gcd(int a, int b){ // алгоритм Евклида для эффекти�
     return a;
 }
 
-bool FermatsCondition(int p, int k){
+template<typename T>
+bool FermatsCondition(T p, T& k){
     if(p <= 1 || (p % 2 == 0 && p != 2)){
         return false;
     }
@@ -37,7 +39,7 @@ bool FermatsCondition(int p, int k){
     }
 
     for(int i = 0; i < k; i++){
-        int a = aValues[i];
+        T a = aValues[i];
 
         if(a >= p) continue;
 
@@ -54,7 +56,7 @@ bool FermatsCondition(int p, int k){
 }
 
 bool isPrime(int p){
-    if (p % 2 == 0 || p % 3 == 0){
+    if (p % 2 == 0 || p % 3 == 0 || p <= 1){
         return false;
     }
 
@@ -76,19 +78,32 @@ bool isPrime(int p){
     return true;
 }
 
+void Tests(){
+    assert(aXmodP(3, 100, 7) == 4);
+    assert(gcd(1234, 54) == 2);
+    assert(isPrime(23));
+}
+
 int main(){
-    int a, x, p, k;
-    cout << "Введите число: ";
-    cin >> a;
-    cout << "Введите степень: ";
-    cin >> x;
+
+    Tests();
+
+    int a1, x1;
+    cout << "Введите первое число и его степень через пробел: ";
+    cin >> a1 >> x1;
+    
+    int a2, x2;
+    cout << "Введите второе число и его степень через пробел: ";
+    cin >> a2 >> x2;
+
+    int p, k;
     cout << "Введите модуль: ";
     cin >> p;
     cout << "Введите количество проверок для теоремы Ферма: ";
     cin >> k;
 
     if(!isPrime(p)){
-        cout << endl << "Модуль не является простым числом, попробуйте другой." << endl;
+        cout << endl << "Модуль не является простым числом, попробуйте другой. Модуль обязательно должен быть > 0!" << endl;
         return 0;
     }
     
@@ -97,5 +112,14 @@ int main(){
         return 0;
     }
 
-    cout << endl << "Результат: " << aXmodP(a, x, p) << endl;
+    int result1 = aXmodP(a1, x1, p);
+    int result2 = aXmodP(a2, x2, p);
+
+    if(result1 == result2){
+        cout << a1 << "^" << x1 << " mod " << p << " = " << a2 << "^" << x2 << " mod " << p << endl;
+    }
+    else{
+        cout << a1 << "^" << x1 << " mod " << p << " != " << a2 << "^" << x2 << " mod " << p << endl;
+    }
+
 }
