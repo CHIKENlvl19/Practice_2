@@ -51,8 +51,6 @@ vector<short> DecToBin(int number) {
         number /= 2;
     }
     return BinNumbers;
-
-    //reverse(BinNumbers.begin(), BinNumbers.end());
 }
 
 int mod_pow(int a, int exponent, int p) {
@@ -73,7 +71,6 @@ int aXmodPviaLog(int a, int x, int p) {
     if (x == 0) return 1 % p;
     if (p == 1) return 0;
 
-    // Вычисляем максимальную степень 2^k ≤ x
     int maxPowerOfTwo = static_cast<int>(ceil(log2(x)));
     if (pow(2, maxPowerOfTwo) < x) maxPowerOfTwo++;
 
@@ -152,6 +149,7 @@ void Tests(){
     assert(aXmodPviaLog(5, 13, 7) == 5);
     assert(aXmodPviaLog(5, 0, 7) == 1);
     assert(aXmodPviaLog(3, 100, 7) == 4);
+    assert(aXmodPviaLog(3, 1, 7) == 3);
 }
 
 int main(){
