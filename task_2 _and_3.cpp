@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+
 using namespace std;
 
 int EVK(int a, int b) {
@@ -12,6 +13,9 @@ int EVK(int a, int b) {
 }
 
 int extendedEuclidean(int a, int b, int m) {
+    cout << "-------------------------" << endl;
+    cout << "r \tx \ty \tq " << endl;
+    cout << "-------------------------" << endl;
     int x0 = 1, x1 = 0;
     int y0 = 0, y1 = 1;
     int r = 0, q = 0;
@@ -24,9 +28,11 @@ int extendedEuclidean(int a, int b, int m) {
         int new_y = y0 - q * y1;
 
         cout << r << "\t" << new_x << "\t" << new_y << "\t" << q << endl;
-
+        cout << "-------------------------" << endl;
+        
         a = b;
         b = r;
+        
         x0 = x1;
         x1 = new_x;
         y0 = y1;
@@ -56,6 +62,7 @@ int main() {
     int d = extendedEuclidean(c, m, m);
     
     cout << "Обратный элемент d = " << d << endl;
+    cout << c << "^(-1) mod " << m << " = " << d << endl;
     cout << c << "*" << d << " mod " << m << " = " << (c * d) % m << endl;
 
     return 0;
