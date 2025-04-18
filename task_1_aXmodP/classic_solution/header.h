@@ -1,10 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <math.h>
-#include <vector>
-#include <cassert>
-
 using namespace std;
 
 int aXmodP (int a, int x, int p);

@@ -1,7 +1,4 @@
 #include <iostream>
-#include <math.h>
-#include <vector>
-#include <cassert>
 #include "header.h"
 
 using namespace std;
