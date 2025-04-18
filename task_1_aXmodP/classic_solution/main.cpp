@@ -31,10 +31,7 @@ int main(){
         return 0;
     }
 
-    int result1 = aXmodP(a1, x1, p);
-    int result2 = aXmodP(a2, x2, p);
-
-    if(result1 == result2){
+    if(aXmodP(a1, x1, p) == aXmodP(a2, x2, p)){
         cout << a1 << "^" << x1 << " mod " << p << " = " << a2 << "^" << x2 << " mod " << p << endl;
     }
     else{
