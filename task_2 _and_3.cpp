@@ -46,6 +46,13 @@ int extendedEuclidean(int a, int b, int m) {
     return x0;
 }
 
+void MutuallyPrimeCheck(int gcd){
+    if(gcd != 1){
+        cerr << "Ошибка: c и m не взаимно просты, обратный элемент не существует." << endl;
+        exit(1);
+    }
+}
+
 int main() {
     int c = 0, m = 0;
     cout << "Введите c (число для обратного элемента): ";
@@ -53,11 +60,7 @@ int main() {
     cout << "Введите m (модуль): ";
     cin >> m;
 
-    int nod = EVK(c, m);
-    if (nod != 1) {
-        cout << "Ошибка: c и m не взаимно просты, обратный элемент не существует." << endl;
-    return 1;
-    }
+    MutuallyPrimeCheck(EVK(c, m));
 
     int d = extendedEuclidean(c, m, m);
     

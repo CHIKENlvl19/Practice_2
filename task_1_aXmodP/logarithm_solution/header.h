@@ -1,11 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <cmath>
 #include <vector>
-#include <algorithm>
-#include <cassert>
-
 using namespace std;
 
 bool isPrime(int p);

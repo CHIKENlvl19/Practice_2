@@ -25,7 +25,6 @@ int EVK(int a, int b) {
     return a;
 }
 
-// поиск k для уменьшения коэффициентов
 void CompactSolution(int a, int a0, int b, int b0){
     int k = ( (a / a0) < (b / b0) ) ? (a / a0) : (b / b0);
 
@@ -35,7 +34,7 @@ void CompactSolution(int a, int a0, int b, int b0){
 }
 
 void solve_diophantine(int a, int b, int c) {
-    vector<int> cf = continued_fraction(a, b); // коэффициенты цепной дроби
+    vector<int> cf = continued_fraction(a, b);
     int x = 0, y = 1;
     int x_prev = 1, y_prev = 0;
     for (int q : cf) {
@@ -47,7 +46,7 @@ void solve_diophantine(int a, int b, int c) {
         y = y_prev - q * y;
         y_prev = y_temp;
     }
-    // после цикла (x_prev, y_prev) — решение для ax + by = НОД(a,b)
+
     int gcd = EVK(a, b);
     if (c % gcd != 0) {
         cout << "Нет решений." << endl;
@@ -64,10 +63,8 @@ void solve_diophantine(int a, int b, int c) {
 }
 
 int main() {
-    //int a = 1256, b = 847, c = 119;
     cout << "1256a + 847b = 119" << endl;
     solve_diophantine(1256, 847, 119);
-    //solve_diophantine(3990, 1221, 12);
 
     return 0;
 }

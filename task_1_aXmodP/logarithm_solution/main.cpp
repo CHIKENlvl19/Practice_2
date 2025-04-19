@@ -1,8 +1,4 @@
 #include <iostream>
-#include <cmath>
-#include <vector>
-#include <algorithm>
-#include <cassert>
 #include "header.h"
 
 using namespace std;
