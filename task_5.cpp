@@ -28,6 +28,8 @@ int EVK(int a, int b) {
 void CompactSolution(int a, int a0, int b, int b0){
     int k = ( (a / a0) < (b / b0) ) ? (a / a0) : (b / b0);
 
+    cout << "Одно компактное решение: a = " << a + (a0 * k) << ", b = " << b + (-b0 * k) << endl;
+
     cout << "Компактное общее решение: a = " << a + (a0 * k) << " + " << a0 << " * k"
         << ", b = " << b + (-b0 * k) << " + " << b0 << " * k"
         << ", где k - целое число." << endl;
@@ -55,15 +57,15 @@ void solve_diophantine(int a, int b, int c) {
     
     int k = c / gcd;
     cout << "Одно решение: a = " << x_prev * k << ", b = " << y_prev * k << endl;
-    cout << "Общее решение: a = " << x_prev * k << " + " << b/gcd << " * t," 
-         << " b = " << y_prev * k << " - " << a/gcd << " * t" 
-         << ", где t - целое число." << endl;
+    cout << "Общее решение: a = " << x_prev * k << " + " << b/gcd << " * k," 
+         << " b = " << y_prev * k << " - " << a/gcd << " * k" 
+         << ", где k - целое число." << endl << endl;
 
     CompactSolution(x_prev * k, b/gcd, y_prev * k, a/gcd);
 }
 
 int main() {
-    cout << "1256a + 847b = 119" << endl;
+    cout << "1256a + 847b = 119" << endl << endl;
     solve_diophantine(1256, 847, 119);
 
     return 0;
