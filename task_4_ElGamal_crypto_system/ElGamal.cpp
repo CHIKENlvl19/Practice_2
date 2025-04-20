@@ -3,16 +3,18 @@
 #include <cstdlib> // библиотека для рандомайзера srand
 #include <ctime>
 #include <sstream>
+#include <cmath>
 
 using namespace std;
 
 // поиск НОД по алгоритму Евклида для проверки на взаимную простоту
-int gcd(int a, int b) { 
-    while (b != 0) {
-        int temp = b;
+int gcd(int a, int b){
+    while( b!= 0){
+        int r = b;
         b = a % b;
-        a = temp;
+        a = r;
     }
+
     return a;
 }
 
@@ -51,6 +53,33 @@ int mul(int a, int b, int n) {
         }
     }
     return sum;
+}
+
+bool isPrime(int p){
+    if (p % 2 == 0 || p % 3 == 0 || p <= 1){
+        return false;
+    }
+
+    int squareRootN = static_cast<int>(sqrt(p)) + 1;
+    int maxI = (squareRootN + 1) / 6;
+
+    for(int i = 1; i < maxI; i++){
+        int dividerMinusOne = 6 * i - 1;
+        int dividerPlusOne = 6 * i + 1;
+            
+        if (dividerMinusOne <= squareRootN) {
+            if (p % dividerMinusOne == 0) return false;
+        }
+        if (dividerPlusOne <= squareRootN) {
+            if (p % dividerPlusOne == 0) return false;
+        }
+    }
+
+    return true;
+}
+
+bool is_primitive_root(int g, int p) {
+    
 }
 
 // функция шифрования
@@ -104,16 +133,23 @@ void decrypt(int p, int x, const string& ciphertext, string& decryptedText) {
 
 
 int main() {
-    srand(time(NULL));
-
-    int p = rand() % 900 + 1;
-    int g = rand() % 300 + 1;
-    int x = rand() % 10 + 1;
+    //int p = rand() % 900 + 1;
+    //int g = rand() % 300 + 1;
+    //int x = rand() % 10 + 1;
     
     // написать рандом для p, g, x + проверка на g < p, x < p, 1<k<(p - 1) - ПО АЛГОРИТМУ ЕВКЛИДА
-    //int p = 593;
-    //int g = 123;
-    //int x = 7;
+    srand(time(NULL));
+
+    int p, g, x;
+    do {
+        p = rand() % 900 + 256; // p ≥ 256
+    } while (!isPrime(p));
+
+    do {
+        g = rand() % (p - 1) + 1;
+    } while (!is_primitive_root(g, p));
+
+    x = rand() % (p - 1) + 1;
    
     string plaintext;
     string ciphertext;
@@ -131,7 +167,3 @@ int main() {
         return 0;
     }
 }
-
-
-// http://e-maxx.ru/algo/euclid_algorithm - легкий алгоритм Евклида
-// алгоритм Эль-Гамаля - ассиметричная криптосистема
