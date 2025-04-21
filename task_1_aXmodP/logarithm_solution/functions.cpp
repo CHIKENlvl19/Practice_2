@@ -54,20 +54,6 @@ vector<short> DecToBin(int number) {
     return BinNumbers;
 }
 
-int mod_pow(int a, int exponent, int p) {
-    if (p == 1) return 0;
-    a %= p;
-    int result = 1;
-    while (exponent > 0) {
-        if (exponent % 2 == 1) {
-            result = (result * a) % p;
-        }
-        a = (a * a) % p;
-        exponent /= 2;
-    }
-    return result;
-}
-
 int aXmodPviaLog(int a, int x, int p) {
     if (x == 0) return 1 % p;
     if (p == 1) return 0;
@@ -78,7 +64,7 @@ int aXmodPviaLog(int a, int x, int p) {
     vector<int> rowOfAs;
     for (int i = 0; i <= maxPowerOfTwo; ++i) {
         int exponent = 1 << i;
-        rowOfAs.push_back(mod_pow(a, exponent, p));
+        rowOfAs.push_back(aXmodP(a, exponent, p));
     }
 
     vector<short> BinX = DecToBin(x);
